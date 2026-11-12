@@ -17,10 +17,5 @@
     hardware.facter.reportPath = ./facter.json;
     networking.hostName = "atlas"; # Define your hostname.
     features.gruco.hostType = "server";
-
-    # Enable OpenSSH service
-    services.openssh = {
-      enable = true;
-    };
   };
 }

@@ -3,9 +3,9 @@
     imports = with self.modules.nixos; [
       profiles-base
       locale-es_es
-
       containers
       monitoring
+      openssh
     ];
   };
 }
