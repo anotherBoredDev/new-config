@@ -8,9 +8,10 @@
   };
 
   flake.modules.nixos.atlas = { pkgs, ... }: {
-    imports = [
-      self.modules.nixos.profiles-server
-      self.modules.nixos.gruco
+    imports = with self.modules.nixos; [
+      profiles-server
+      monitoring
+      gruco
     ];
 
     boot.kernelPackages = pkgs.linuxPackages;

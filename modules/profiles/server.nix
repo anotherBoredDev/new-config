@@ -4,7 +4,6 @@
       profiles-base
       locale-es_es
       containers
-      monitoring
       openssh
       sops
     ];
