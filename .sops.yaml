@@ -1,0 +1,9 @@
+keys:
+  - &admin_gruco age1ypt8n94jycn8jspnn8yna07gss9axa6t8r90yxjnpupwkjcqn5jq3928xt
+  - &server_atlas age1k2uuehpf4zwdkn5dqdm4palz8d8yqqryylstnt0djdysafyxfpjq0a4xjl
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *admin_gruco
+          - *server_atlas

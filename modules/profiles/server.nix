@@ -6,6 +6,7 @@
       containers
       monitoring
       openssh
+      sops
     ];
   };
 }
