@@ -3,7 +3,6 @@
   flake.nixosConfigurations.hermes = inputs.nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     modules = [
-      inputs.disko.nixosModules.disko
       self.modules.nixos.hermes
     ];
   };
@@ -12,8 +11,6 @@
     imports = with self.modules.nixos; [
       profiles-server
       gruco
-    ] ++ [
-      ./_disko.nix
     ];
 
     boot.kernelPackages = pkgs.linuxPackages;
