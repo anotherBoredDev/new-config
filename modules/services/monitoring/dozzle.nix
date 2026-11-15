@@ -24,7 +24,16 @@
             ports = [ "8080:8080" ];
             volumes = [
               "/run/podman/podman.sock:/var/run/docker.sock:ro"
+              "dozzle_data:/data"
+              "${config.sops.secrets.dozzle_users.path}:/data/users.yml:ro"
             ];
+            environment = {
+              # Descomenta para habilitar la autenticación. Consulta https://dozzle.dev/guide/authentication
+              "DOZZLE_AUTH_PROVIDER" = "simple";
+
+              # Pon nombre a esta instancia de Dozzle (se muestra en la cabecera y en el menú multihost). Consulta https://dozzle.dev/guide/hostname
+              # "DOZZLE_HOSTNAME" = "my-server";
+            };
           };
         };
       };

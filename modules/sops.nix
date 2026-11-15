@@ -8,6 +8,7 @@
 
     sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
+    sops.secrets.dozzle_users = { };
     sops.secrets.beszel_agent_env = { };
   };
 }
