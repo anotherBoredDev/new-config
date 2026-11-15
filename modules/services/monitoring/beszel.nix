@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
   flake.modules.nixos.monitoring =
     {
       config,
@@ -37,7 +37,7 @@
               "/var/lib/beszel-agent:/var/lib/beszel-agent"
               "/run/podman/podman.sock:/var/run/docker.sock:ro"
             ];
-            environmentFiles = [ "/var/lib/beszel-agent/env" ];
+            environmentFiles = [ config.sops.secrets.beszel_agent_env.path ];
           };
         };
       };
