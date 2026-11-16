@@ -23,6 +23,15 @@
     features.frp.client = {
       enable = true;
       serverAddr = "hermes";
+      proxies = [
+        {
+          name = "atlas-mysql";
+          type = "tcp";
+          localIP = "127.0.0.1";
+          localPort = 3306;
+          remotePort = 26033;
+        }
+      ];
     };
 
     features.gruco.hostType = "server";
