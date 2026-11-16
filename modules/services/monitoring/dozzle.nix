@@ -36,6 +36,8 @@
             };
           };
         };
+
+        sops.secrets.dozzle_users = { };
       };
     };
 }

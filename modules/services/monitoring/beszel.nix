@@ -40,6 +40,8 @@
             environmentFiles = [ config.sops.secrets.beszel_agent_env.path ];
           };
         };
+
+        sops.secrets.beszel_agent_env = { };
       };
     };
 }
