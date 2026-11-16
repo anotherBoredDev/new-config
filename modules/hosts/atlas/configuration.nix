@@ -12,6 +12,7 @@
       profiles-server
       monitoring
       frp
+      mysql
       gruco
     ];
 
