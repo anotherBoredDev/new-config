@@ -5,6 +5,7 @@
       networking
       nixos-nix-settings
       nixos-system
+      tailscale
     ];
 
     environment.systemPackages = with pkgs; [

@@ -6,7 +6,6 @@
       containers
       openssh
       sops
-      tailscale
     ];
   };
 }
