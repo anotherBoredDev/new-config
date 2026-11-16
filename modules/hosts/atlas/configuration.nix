@@ -11,12 +11,19 @@
     imports = with self.modules.nixos; [
       profiles-server
       monitoring
+      frp
       gruco
     ];
 
     boot.kernelPackages = pkgs.linuxPackages;
     hardware.facter.reportPath = ./facter.json;
     networking.hostName = "atlas"; # Define your hostname.
+
+    features.frp.client = {
+      enable = true;
+      serverAddr = "hermes";
+    };
+
     features.gruco.hostType = "server";
   };
 }
