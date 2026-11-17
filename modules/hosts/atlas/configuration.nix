@@ -7,18 +7,43 @@
     ];
   };
 
-  flake.modules.nixos.atlas = { pkgs, ... }: {
+  flake.modules.nixos.atlas = { config, pkgs, ... }: {
     imports = with self.modules.nixos; [
+      # core
       profiles-server
-      monitoring
-      frp
-      mysql
       gruco
+      # modules
+      frp
+      monitoring
+      mysql
     ];
 
     boot.kernelPackages = pkgs.linuxPackages;
     hardware.facter.reportPath = ./facter.json;
     networking.hostName = "atlas"; # Define your hostname.
+
+    features.gruco.hostType = "server";
+
+    features.monitoring = {
+      dozzle.enable = true;
+
+      beszel = {
+        hub = {
+          enable = true;
+          host = "0.0.0.0";
+          environment = {
+            APP_URL = "http://localhost:8090";
+          };
+        };
+        agent = {
+          enable = true;
+          smartmon.enable = true;
+          environmentFile = config.sops.secrets.atlas_beszel_agent_env.path;
+        };
+      };
+    };
+
+    sops.secrets.atlas_beszel_agent_env = { };
 
     features.frp.client = {
       enable = true;
@@ -33,7 +58,5 @@
         }
       ];
     };
-
-    features.gruco.hostType = "server";
   };
 }

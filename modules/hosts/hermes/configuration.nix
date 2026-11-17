@@ -7,23 +7,33 @@
     ];
   };
 
-  flake.modules.nixos.hermes = { pkgs, ... }: {
+  flake.modules.nixos.hermes = { config, pkgs, ... }: {
     imports = with self.modules.nixos; [
+      # core
       profiles-server
-      frp
       gruco
+      # modules
+      frp
+      monitoring
     ];
 
     boot.kernelPackages = pkgs.linuxPackages;
     hardware.facter.reportPath = ./facter.json;
     networking.hostName = "hermes"; # Define your hostname.
 
+    features.gruco.hostType = "server";
+
+    features.monitoring.beszel.agent = {
+      enable = true;
+      environmentFile = config.sops.secrets.hermes_beszel_agent_env.path;
+    };
+
+    sops.secrets.hermes_beszel_agent_env = { };
+
     features.frp.server = {
       enable = true;
     };
 
     networking.firewall.allowedTCPPorts = [ 26033 ];
-
-    features.gruco.hostType = "server";
   };
 }
