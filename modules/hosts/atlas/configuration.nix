@@ -50,6 +50,20 @@
       serverAddr = "hermes";
       proxies = [
         {
+          name = "atlas-dozzle";
+          type = "tcp";
+          localIP = "127.0.0.1";
+          localPort = 8080;
+          remotePort = 8080;
+        }
+        {
+          name = "atlas-beszel-hub";
+          type = "tcp";
+          localIP = "127.0.0.1";
+          localPort = 8090;
+          remotePort = 8090;
+        }
+        {
           name = "atlas-mysql";
           type = "tcp";
           localIP = "127.0.0.1";
