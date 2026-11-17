@@ -34,6 +34,37 @@
       enable = true;
     };
 
-    networking.firewall.allowedTCPPorts = [ 26033 ];
+    services.caddy = {
+      enable = true;
+      email = "admin@abodevlab.work";
+
+      virtualHosts = {
+        "pods.abodevlab.work" = {
+          extraConfig = ''
+            reverse_proxy 127.0.0.1:8080 {
+              flush_interval -1
+            }
+          '';
+        };
+        "monitor.abodevlab.work" = {
+          extraConfig = ''
+            request_body {
+              max_size 10MB
+            }
+            reverse_proxy 127.0.0.1:8090 {
+              transport http {
+                read_timeout 360s
+              }
+            }
+          '';
+        };
+      };
+    };
+
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+      26033
+    ];
   };
 }
