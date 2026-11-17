@@ -6,13 +6,13 @@
       ...
     }:
     let
-      cfg = config.features.dozzle;
+      cfg = config.features.monitoring.dozzle;
     in
     {
-      options.features.dozzle = {
+      options.features.monitoring.dozzle = {
         enable = lib.mkOption {
           type = lib.types.bool;
-          default = true;
+          default = false;
           description = "Enable dozzle pod";
         };
       };
