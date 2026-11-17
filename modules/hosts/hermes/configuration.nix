@@ -22,6 +22,8 @@
       enable = true;
     };
 
+    networking.firewall.allowedTCPPorts = [ 26033 ];
+
     features.gruco.hostType = "server";
   };
 }
